@@ -3,10 +3,11 @@
 @tailwind utilities;
 
 @mixin btnCommon {
-    @apply px-3 py-1 border rounded-lg  transition-all w-fit h-fit;
+    @apply px-3 py-1 border rounded-lg  transition-all;
 }
 
 @layer components {
+    // Buttons
     .btn {
         @include btnCommon;
         @apply border-primary hover:bg-primary text-primary hover:text-white;
@@ -19,6 +20,12 @@
         @include btnCommon;
         @apply bg-red-500 text-white;
     }
+
+    .btn-ghost {
+        @include btnCommon;
+        @apply text-inherit border-slate-200 hover:bg-inherit hover:text-inherit hover:border-primary;
+    }
+
     .btn-sm {
         @apply px-2 py-0.5;
     }
