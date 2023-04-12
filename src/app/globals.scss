@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@mixin btnCommon {
+    @apply px-3 py-1 border rounded-lg  transition-all w-fit h-fit;
+}
+
+@layer components {
+    .btn {
+        @include btnCommon;
+        @apply border-primary hover:bg-primary text-primary hover:text-white;
+    }
+    .btn-primary {
+        @include btnCommon;
+        @apply bg-primary  text-white border border-transparent;
+    }
+    .btn-danger {
+        @include btnCommon;
+        @apply bg-red-500 text-white;
+    }
+    .btn-sm {
+        @apply px-2 py-0.5;
+    }
+    .btn-lg {
+        @apply px-4 py-2;
+    }
+}
