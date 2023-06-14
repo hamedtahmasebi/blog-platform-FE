@@ -1,3 +1,0 @@
-mutation Login($body: LoginReq!) {
-    login(body: $body)
-}
