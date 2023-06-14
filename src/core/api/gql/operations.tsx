@@ -13,3 +13,8 @@ export type RegisterMutationVariables = Types.Exact<{
 
 
 export type RegisterMutation = { __typename?: 'Mutation', register: boolean };
+
+export type CurrentUserQueryVariables = Types.Exact<{ [key: string]: never; }>;
+
+
+export type CurrentUserQuery = { __typename?: 'Query', currentUser: { __typename?: 'User', email: string, token: string } };

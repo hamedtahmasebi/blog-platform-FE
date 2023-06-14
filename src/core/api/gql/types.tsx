@@ -76,6 +76,7 @@ export type Post = {
 export type Query = {
   __typename?: 'Query';
   collection: Array<Collection>;
+  currentUser: User;
   post: Post;
   posts: Array<Post>;
   users: Array<User>;

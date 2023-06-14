@@ -12,7 +12,17 @@ const register = gql`
     }
 `;
 
+const currentUser = gql`
+    query CurrentUser {
+        currentUser {
+            email
+            token
+        }
+    }
+`;
+
 export const UserQueries = {
     login,
     register,
+    currentUser,
 };

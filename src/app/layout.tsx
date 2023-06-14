@@ -1,3 +1,5 @@
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import '../core/styles/index.scss';
 import { Poppins } from 'next/font/google';
 
@@ -13,7 +15,10 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en" className={poppins.className}>
-            <body className="bg-base">{children}</body>
+            <body className="bg-base">
+                <ToastContainer />
+                {children}
+            </body>
         </html>
     );
 }
