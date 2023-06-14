@@ -6,3 +6,10 @@ export type LoginMutationVariables = Types.Exact<{
 
 
 export type LoginMutation = { __typename?: 'Mutation', login: boolean };
+
+export type RegisterMutationVariables = Types.Exact<{
+  body: Types.RegisterReq;
+}>;
+
+
+export type RegisterMutation = { __typename?: 'Mutation', register: boolean };

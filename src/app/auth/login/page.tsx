@@ -1,10 +1,6 @@
 'use client';
-
-import { UserApi } from '@src/core/api/User';
-import { ApiClient } from '@src/core/api';
+import { userApi } from '@src/core/api/User';
 import { FormEvent } from 'react';
-
-const userApi = new UserApi(ApiClient);
 
 const Login = () => {
     const handleSubmit = async (e: FormEvent) => {

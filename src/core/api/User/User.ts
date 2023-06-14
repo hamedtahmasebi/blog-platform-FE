@@ -1,9 +1,10 @@
-import { LoginReq } from '../gql';
-import { Api } from '../graphql-client';
+import { LoginReq, RegisterReq } from '../gql';
+import { Api, ApiClient } from '../graphql-client';
 import { ApiResponse } from '../types';
 import { UserQueries } from './User.queries';
 interface UserApiInterface {
     login(body: LoginReq): ApiResponse;
+    register(body: RegisterReq): ApiResponse;
 }
 
 export class UserApi implements UserApiInterface {
@@ -16,10 +17,20 @@ export class UserApi implements UserApiInterface {
                 body,
             },
         });
-        console.log(res);
-        return {
-            data: res,
-            error: null,
-        };
+
+        return res;
+    }
+
+    async register(body: RegisterReq): ApiResponse {
+        const res = await this.api.mutate({
+            mutation: UserQueries.register,
+            variables: {
+                body,
+            },
+        });
+        return res;
     }
 }
+
+export const userApi = new UserApi(ApiClient);
+export default userApi;

@@ -6,6 +6,13 @@ const login = gql`
     }
 `;
 
+const register = gql`
+    mutation Register($body: RegisterReq!) {
+        register(body: $body)
+    }
+`;
+
 export const UserQueries = {
     login,
+    register,
 };
