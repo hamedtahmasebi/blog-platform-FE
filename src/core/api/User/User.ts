@@ -1,9 +1,11 @@
 import { LoginReq, RegisterReq, SuccessLoginRes, User } from '../gql';
 import { Api, ApiClient } from '../graphql-client';
+import { ApiResponse } from '../types';
 import { UserQueries } from './user.queries';
 interface UserApiInterface {
     login(body: LoginReq): unknown;
     register(body: RegisterReq): unknown;
+    getCurrentUser(): ApiResponse<User>;
 }
 
 export class UserApi implements UserApiInterface {
