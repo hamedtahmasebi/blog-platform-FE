@@ -2,39 +2,39 @@
 @tailwind components;
 @tailwind utilities;
 
-@mixin btnCommon {
-    @apply px-3 py-1 border rounded-lg  transition-all;
-}
+// @mixin btnCommon {
+//     @apply px-3 py-1 border rounded-lg  transition-all;
+// }
 
 @layer components {
     // Inputs
-    input {
-        @apply bg-transparent outline-none border border-primary shadow-md rounded-lg px-3 py-2 w-full;
-    }
+    // input {
+    //     @apply bg-transparent outline-none border border-primary shadow-md rounded-lg px-3 py-2 w-full;
+    // }
 
-    // Buttons
-    .btn {
-        @include btnCommon;
-        @apply border-primary hover:bg-primary text-primary hover:text-white;
-    }
-    .btn-primary {
-        @include btnCommon;
-        @apply bg-primary  text-white border border-transparent;
-    }
-    .btn-danger {
-        @include btnCommon;
-        @apply bg-red-500 text-white;
-    }
+    // // Buttons
+    // .btn {
+    //     @include btnCommon;
+    //     @apply border-primary hover:bg-primary text-primary hover:text-white;
+    // }
+    // .btn-primary {
+    //     @include btnCommon;
+    //     @apply bg-primary  text-white border border-transparent;
+    // }
+    // .btn-danger {
+    //     @include btnCommon;
+    //     @apply bg-red-500 text-white;
+    // }
 
-    .btn-ghost {
-        @include btnCommon;
-        @apply text-inherit border-slate-200 hover:bg-inherit hover:text-inherit hover:border-primary;
-    }
+    // .btn-ghost {
+    //     @include btnCommon;
+    //     @apply text-inherit border-slate-200 hover:bg-inherit hover:text-inherit hover:border-primary;
+    // }
 
-    .btn-sm {
-        @apply px-2 py-0.5;
-    }
-    .btn-lg {
-        @apply px-4 py-2;
-    }
+    // .btn-sm {
+    //     @apply px-2 py-0.5;
+    // }
+    // .btn-lg {
+    //     @apply px-4 py-2;
+    // }
 }
