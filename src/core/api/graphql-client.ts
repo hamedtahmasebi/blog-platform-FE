@@ -8,24 +8,38 @@ export const gqlClient = new ApolloClient({
 export class Api {
     constructor(private apollo: ApolloClient<any>) {}
 
-    async query<TReq, TRes>(options: QueryOptions<{ body: TReq }, TRes>): ApiResponse {
-        const res = await this.apollo.query<TRes, { body: TReq }>(options);
-        if (res.errors) return { data: null, error: res.errors[0].message };
-        if (res.error) return { data: null, error: res.error.message };
-        return {
-            data: res.data,
-            error: null,
-        };
+    async query<TReq, TRes>(options: QueryOptions<{ body: TReq }, TRes>): ApiResponse<TRes> {
+        try {
+            const res = await this.apollo.query<TRes, { body: TReq }>(options);
+            if (res.errors) return { data: null, error: res.errors[0].message };
+            if (res.error) return { data: null, error: res.error.message };
+            return {
+                data: res.data,
+                error: null,
+            };
+        } catch (error: any) {
+            return {
+                data: null,
+                error: error?.message || error,
+            };
+        }
     }
 
-    async mutate<TReq, TRes>(options: MutationOptions<TRes, { body: TReq }>): ApiResponse {
-        const res = await this.apollo.mutate<TRes, { body: TReq }>(options);
-        if (res.errors) return { data: null, error: res.errors[0].message };
-        if (res.data === undefined) return { data: null, error: 'Something went wrong' };
-        return {
-            data: res.data,
-            error: null,
-        };
+    async mutate<TReq, TRes>(options: MutationOptions<TRes, { body: TReq }>): ApiResponse<TRes> {
+        try {
+            const res = await this.apollo.mutate<TRes, { body: TReq }>(options);
+            if (res.errors) return { data: null, error: res.errors[0].message };
+            if (res.data === undefined || res.data === null) return { data: null, error: 'Something went wrong' };
+            return {
+                data: res.data,
+                error: null,
+            };
+        } catch (error: any) {
+            return {
+                data: null,
+                error: error?.message || error,
+            };
+        }
     }
 }
 

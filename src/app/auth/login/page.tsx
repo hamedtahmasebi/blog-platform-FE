@@ -1,5 +1,18 @@
 'use client';
+import {
+    AbsoluteCenter,
+    Box,
+    Button,
+    Divider,
+    FormControl,
+    FormLabel,
+    Heading,
+    Input,
+    Text,
+    VStack,
+} from '@chakra-ui/react';
 import { userApi } from '@src/core/api/User';
+import Link from 'next/link';
 import { FormEventHandler } from 'react';
 
 const Login = () => {
@@ -20,19 +33,46 @@ const Login = () => {
         console.log(res.data);
     };
     return (
-        <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-            <label>
-                <div>Email</div>
-                <input name="email" type="email" />
-            </label>
-            <label>
-                <div>Password</div>
-                <input name="password" type="password" />
-            </label>
-            <button type="submit" className="btn btn-lg">
+        <VStack gap={8} w={'full'} alignItems={'stretch'}>
+            <Heading
+                as="h1"
+                size={{
+                    base: 'xl',
+                    sm: '2xl',
+                    md: '3xl',
+                    lg: '4xl',
+                }}
+            >
                 Login
-            </button>
-        </form>
+            </Heading>
+            <form onSubmit={handleSubmit} className="flex flex-col w-full gap-5">
+                <FormControl isRequired>
+                    <FormLabel>Email</FormLabel>
+                    <Input placeholder="Email" />
+                </FormControl>
+                <FormControl isRequired>
+                    <FormLabel>Password</FormLabel>
+                    <Input placeholder="Password" type="password" />
+                </FormControl>
+                <Button type="submit" variant={'solid'} colorScheme="primary" size={'lg'} mt={5}>
+                    Login
+                </Button>
+            </form>
+
+            <Box position="relative">
+                <Divider />
+                <AbsoluteCenter bg="white" px="4">
+                    <Text fontSize={{ sm: 'md' }} color={'gray.400'}>
+                        Or
+                    </Text>
+                </AbsoluteCenter>
+            </Box>
+            <Link href={`/auth/register`}>
+                <Button variant={'solid'} w={'full'} size={'lg'}>
+                    Register
+                </Button>
+            </Link>
+        </VStack>
     );
 };
 

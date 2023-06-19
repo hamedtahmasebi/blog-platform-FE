@@ -5,14 +5,14 @@ export type LoginMutationVariables = Types.Exact<{
 }>;
 
 
-export type LoginMutation = { __typename?: 'Mutation', login: boolean };
+export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'SuccessLoginRes', authToken: string } };
 
 export type RegisterMutationVariables = Types.Exact<{
   body: Types.RegisterReq;
 }>;
 
 
-export type RegisterMutation = { __typename?: 'Mutation', register: boolean };
+export type RegisterMutation = { __typename?: 'Mutation', register: { __typename?: 'SuccessLoginRes', authToken: string } };
 
 export type CurrentUserQueryVariables = Types.Exact<{ [key: string]: never; }>;
 

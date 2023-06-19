@@ -2,7 +2,6 @@ import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 import { User } from '@src/core/api/gql';
 import { userApi } from '@src/core/api/User';
-import { toast } from 'react-toastify';
 
 type State = {
     user: User | null;
@@ -25,9 +24,6 @@ async function getCurrentUser() {
     console.log('Fetching current user');
     const res = await userApi.getCurrentUser();
     console.log(res);
-    if (res.error) {
-        toast(res.error);
-    }
     setState({
         user: res.data,
     });

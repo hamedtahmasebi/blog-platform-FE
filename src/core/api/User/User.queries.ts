@@ -2,13 +2,17 @@ import { gql } from '@apollo/client';
 
 const login = gql`
     mutation Login($body: LoginReq!) {
-        login(body: $body)
+        login(body: $body) {
+            authToken
+        }
     }
 `;
 
 const register = gql`
     mutation Register($body: RegisterReq!) {
-        register(body: $body)
+        register(body: $body) {
+            authToken
+        }
     }
 `;
 

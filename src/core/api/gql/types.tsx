@@ -37,9 +37,9 @@ export type LoginReq = {
 export type Mutation = {
   __typename?: 'Mutation';
   addPost: Post;
-  login: Scalars['Boolean'];
+  login: SuccessLoginRes;
   logout: Scalars['Boolean'];
-  register: Scalars['Boolean'];
+  register: SuccessLoginRes;
   removePost: Scalars['String'];
 };
 
@@ -79,6 +79,7 @@ export type Query = {
   currentUser: User;
   post: Post;
   posts: Array<Post>;
+  updateAuthToken: SuccessLoginRes;
   users: Array<User>;
 };
 
@@ -95,6 +96,11 @@ export type RegisterReq = {
 
 export type RemovePostReq = {
   token: Scalars['String'];
+};
+
+export type SuccessLoginRes = {
+  __typename?: 'SuccessLoginRes';
+  authToken: Scalars['String'];
 };
 
 export type User = {
