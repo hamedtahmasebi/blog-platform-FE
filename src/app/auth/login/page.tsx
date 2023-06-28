@@ -11,26 +11,20 @@ import {
     Text,
     VStack,
 } from '@chakra-ui/react';
-import { userApi } from '@src/core/api/User';
+import { AuthStore } from '@src/core/store/auth';
 import Link from 'next/link';
-import { FormEventHandler } from 'react';
+import { FormEventHandler, useState } from 'react';
 
 const Login = () => {
+    const login = AuthStore((state) => state.login);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
         e.preventDefault();
-        const formData = new FormData(e.target as HTMLFormElement);
-        const email = formData.get('email')?.toString();
-        const password = formData.get('password')?.toString();
-        console.log({
+        login({
             email,
             password,
         });
-        if (!email || !password) return;
-        const res = await userApi.login({
-            email,
-            password,
-        });
-        console.log(res.data);
     };
     return (
         <VStack gap={8} w={'full'} alignItems={'stretch'}>
@@ -48,11 +42,16 @@ const Login = () => {
             <form onSubmit={handleSubmit} className="flex flex-col w-full gap-5">
                 <FormControl isRequired>
                     <FormLabel>Email</FormLabel>
-                    <Input placeholder="Email" />
+                    <Input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
                 </FormControl>
                 <FormControl isRequired>
                     <FormLabel>Password</FormLabel>
-                    <Input placeholder="Password" type="password" />
+                    <Input
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder="Password"
+                        type="password"
+                    />
                 </FormControl>
                 <Button type="submit" variant={'solid'} colorScheme="primary" size={'lg'} mt={5}>
                     Login
