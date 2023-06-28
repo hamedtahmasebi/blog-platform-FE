@@ -1,4 +1,4 @@
-name: Code Reviewer
+name: AI Code Reviewer
 
 on:
     pull_request:
@@ -14,9 +14,8 @@ jobs:
               uses: actions/checkout@v3
 
             - name: AI Code Reviewer
-              uses: mthooyavan/code-reviewer@main
+              uses: freeedcom/ai-code-reviewer@main
               with:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-                  GPT_MODEL: 'gpt-3.5-turbo'
-                  exclude: '**/*.json, **/*.md , node_modules/*' # Optional: exclude patterns separated by commas
+                  exclude: '**/*.json, **/*.md' # Optional: exclude patterns separated by commas
