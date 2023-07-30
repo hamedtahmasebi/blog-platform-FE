@@ -12,17 +12,21 @@ import {
     Text,
     VStack,
 } from '@chakra-ui/react';
-import { userApi } from '@src/core/api/User';
+import { AuthStore } from '@src/core/store/auth';
 import Link from 'next/link';
-import { FormEvent } from 'react';
+import { DOMAttributes, useState } from 'react';
 
-const page = () => {
-    const handleRegister = (e: FormEvent) => {
+const Register = () => {
+    const { register } = AuthStore((s) => ({ register: s.register })); // this only rerenders if register changes
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const handleRegister: DOMAttributes<HTMLFormElement>['onSubmit'] = (e) => {
         e.preventDefault();
-        userApi.register({
-            email: 'test@gmail.com',
-            password: 'password',
-            confirmPassword: 'password',
+        register({
+            email,
+            password,
+            confirmPassword,
         });
     };
 
@@ -42,15 +46,25 @@ const page = () => {
             <form onSubmit={handleRegister} className="flex flex-col w-full gap-5">
                 <FormControl isRequired>
                     <FormLabel>Email</FormLabel>
-                    <Input placeholder="Email" />
+                    <Input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
                 </FormControl>
                 <FormControl isRequired>
                     <FormLabel>Password</FormLabel>
-                    <Input placeholder="Password" type="password" />
+                    <Input
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder="Password"
+                        type="password"
+                    />
                 </FormControl>
                 <FormControl isRequired>
                     <FormLabel>Confirm Password</FormLabel>
-                    <Input placeholder="Confirm Password" type="password" />
+                    <Input
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        placeholder="Confirm Password"
+                        type="password"
+                    />
                 </FormControl>
                 <Button type="submit" variant={'solid'} colorScheme="primary" size={'lg'} mt={5}>
                     Register
@@ -74,4 +88,4 @@ const page = () => {
     );
 };
 
-export default page;
+export default Register;

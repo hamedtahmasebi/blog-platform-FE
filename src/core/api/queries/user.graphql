@@ -1,0 +1,18 @@
+mutation Login($body: LoginReq!) {
+    login(body: $body) {
+        authToken
+    }
+}
+
+mutation Register($body: RegisterReq!) {
+    register(body: $body) {
+        authToken
+    }
+}
+
+query CurrentUser {
+    currentUser {
+        email
+        token
+    }
+}

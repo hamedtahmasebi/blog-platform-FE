@@ -1,0 +1,25 @@
+query Posts {
+    posts {
+        content
+        created
+        title
+        token
+        user {
+            token
+        }
+    }
+}
+
+mutation AddPost($body: AddPostReq!) {
+    addPost(body: $body) {
+        content
+        created
+        title
+        token
+        updated
+        user {
+            email
+            token
+        }
+    }
+}

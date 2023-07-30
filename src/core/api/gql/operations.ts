@@ -1,4 +1,16 @@
-import * as Types from './types';
+import * as Types from './schemas';
+
+export type PostsQueryVariables = Types.Exact<{ [key: string]: never; }>;
+
+
+export type PostsQuery = { __typename?: 'Query', posts: Array<{ __typename?: 'Post', content: any, created: any, title: string, token: string, user: { __typename?: 'User', token: string } }> };
+
+export type AddPostMutationVariables = Types.Exact<{
+  body: Types.AddPostReq;
+}>;
+
+
+export type AddPostMutation = { __typename?: 'Mutation', addPost: { __typename?: 'Post', content: any, created: any, title: string, token: string, updated: any, user: { __typename?: 'User', email: string, token: string } } };
 
 export type LoginMutationVariables = Types.Exact<{
   body: Types.LoginReq;
