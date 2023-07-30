@@ -25,7 +25,7 @@ const UserApi = User.getSdk(gqlClient);
 
 async function getCurrentUser() {
     try {
-        gqlClient.setHeader('Authorization', localStorage.getItem('auth_token') || '');
+        gqlClient.setHeader('authorization', localStorage.getItem('auth_token') || '');
         const res = await UserApi.CurrentUser();
         console.log(res);
         setState({
