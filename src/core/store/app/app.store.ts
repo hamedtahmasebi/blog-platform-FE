@@ -12,7 +12,7 @@ type Actions = {
 };
 
 export const appStore = create(
-    immer<State & Actions>(() => ({
+    immer<State & Actions>((set) => ({
         user: null,
         error: null,
         getCurrentUser,
@@ -27,7 +27,6 @@ async function getCurrentUser() {
     try {
         gqlClient.setHeader('authorization', localStorage.getItem('auth_token') || '');
         const res = await UserApi.CurrentUser();
-        console.log(res);
         setState({
             user: res.currentUser,
         });

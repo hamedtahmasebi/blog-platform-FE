@@ -9,7 +9,7 @@ type State = {};
 
 type Actions = {
     register(args: Schema.RegisterReq): void;
-    // login(args: { email: string; password: string }): void;
+    login(args: Schema.LoginReq): void;
 };
 
 const UserApi = User.getSdk(gqlClient);
@@ -33,11 +33,20 @@ export const AuthStore = create(
             }
         },
 
-        // async login(args) {
-        //     const { data, error } = await userApi.login(args);
-        //     if (error) return toast.error(error);
-        //     if (!data?.authToken) return toast.error('Something went wrong!');
-        //     localStorage.setItem('auth_token', data.authToken);
-        // },
+        async login(args) {
+            try {
+                const res = await UserApi.Login({
+                    body: args,
+                });
+                localStorage.setItem('auth_token', res.login.authToken);
+                toast.success('Logged in successfully!');
+            } catch (error: any) {
+                if ('message' in error) {
+                    toast.error(error.message);
+                    return;
+                }
+                toast.error('Something went wrong!');
+            }
+        },
     }))
 );
